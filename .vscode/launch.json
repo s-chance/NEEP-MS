@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            // 编译文件的输出目录
+            "program": "${fileDirname}/build/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Debug C++",
+            "internalConsoleOptions": "neverOpen",
+            // 使用内置终端
+            "console": "integratedTerminal"
+        }
+    ]
+}

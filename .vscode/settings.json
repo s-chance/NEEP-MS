@@ -1,0 +1,117 @@
+{
+    "todohighlight.defaultStyle": {
+        "color": "red",
+        "backgroundColor": "#ffab00",
+        "overviewRulerColor": "#ffab00",
+        "cursor": "pointer",
+        "border": "1px solid #eee",
+        "borderRadius": "2px",
+        "isWholeLine": true
+        //other styling properties goes here ... 
+    },
+    "files.associations": {
+        "iostream": "cpp",
+        "intrinsics.h": "c",
+        "ostream": "cpp",
+        "vector": "cpp"
+    },
+    // 集成终端默认为 fish
+    "terminal.integrated.defaultProfile.linux": "fish",
+    // 集成终端启用视觉化铃声
+    "terminal.integrated.enableBell": true,
+    // 集成终端编码: zh_CN.UTF-8
+    "terminal.integrated.env.windows": {
+        "LC_ALL": "zh_CN.UTF-8"
+    },
+    // 集成终端使用GPU加速
+    "terminal.integrated.gpuAcceleration": "on",
+    // 禁用自动检测文件缩进模式和缩进大小，即打开文件后自动将文件更改为 VSCode 配置的缩进格式
+    "editor.detectIndentation": false,
+    // 在编辑器中自动显示内联建议
+    "editor.inlineSuggest.enabled": true,
+    // 是否在输入时显示含有参数文档和类型信息的小面板
+    "editor.parameterHints.enabled": true,
+    // 控制是否在键入代码时自动显示建议
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "off"
+    },
+    // 控制显示快速建议前的等待时间（毫秒）
+    "editor.quickSuggestionsDelay": 0,
+    // 控制编辑器在空白字符上显示符号的方式
+    "editor.renderWhitespace": "none",
+    // 代码片段建议置于其他建议之上
+    "editor.snippetSuggestions": "top",
+    // 使用空格缩进时模拟制表符的行为，可以方便对齐
+    "editor.stickyTabStops": true,
+    // 建议的接受方式
+    "editor.suggest.insertMode": "replace",
+    // 控制排序时是否提高靠近光标的词语的优先级
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.shareSuggestSelections": true,
+    // 控制建议小部件底部的状态栏可见
+    "editor.suggest.showStatusBar": true,
+    // 控制在键入触发字符后是否自动显示建议
+    "editor.suggestOnTriggerCharacters": true,
+    // 始终预先选择第一个建议
+    "editor.suggestSelection": "first",
+    // 开启粘贴保存自动格式化
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    // 自动保存
+    "files.autoSave": "afterDelay",
+    // 自动保存的等待时间（毫秒）
+    "files.autoSaveDelay": 1000,
+    // clangd
+    "clangd.path": "/usr/bin/clangd",
+    // 关闭 C/C++ 提供的 IntelliSenseEngine
+    "C_Cpp.intelliSenseEngine": "disabled",
+    // Clangd 运行参数(在终端/命令行输入 clangd --help-list-hidden 可查看更多)
+    "clangd.onConfigChanged": "restart",
+    // Clangd 运行参数(在终端/命令行输入 clangd --help-list-hidden 可查看更多)
+    "clangd.arguments": [
+        // 让 Clangd 生成更详细的日志
+        "--log=verbose",
+        // 输出的 JSON 文件更美观
+        "--pretty",
+        // 全局补全(输入时弹出的建议将会提供 CMakeLists.txt 里配置的所有文件中可能的符号，会自动补充头文件)
+        "--all-scopes-completion",
+        // 建议风格：打包(重载函数只会给出一个建议）
+        // 相反可以设置为detailed
+        "--completion-style=bundled",
+        "--enable-config",
+        // 默认格式化风格: 谷歌开源项目代码指南（可用的有 LLVM, Google, Chromium, Mozilla, Webkit, Microsoft, GNU 等）
+        "--fallback-style=Google",
+        // 跨文件重命名变量
+        "--cross-file-rename",
+        // 允许补充头文件
+        "--header-insertion=iwyu",
+        // 输入建议中，已包含头文件的项与还未包含头文件的项会以圆点加以区分
+        "--header-insertion-decorators",
+        // 在后台自动分析文件(基于 complie_commands，我们用CMake生成)
+        "--background-index",
+        // 启用 Clang-Tidy 以提供「静态检查」
+        "--clang-tidy",
+        // Clang-Tidy 静态检查的参数，指出按照哪些规则进行静态检查，详情见「与按照官方文档配置好的 VSCode 相比拥有的优势」
+        // 参数后部分的*表示通配符
+        // 在参数前加入-，如-modernize-use-trailing-return-type，将会禁用某一规则
+        "--clang-tidy-checks=cppcoreguidelines-*,performance-*,bugprone-*,portability-*,modernize-*,google-*",
+        // 默认格式化风格: 谷歌开源项目代码指南
+        // "--fallback-style=file",
+        // 同时开启的任务数量
+        "-j=2",
+        // pch优化的位置(memory 或 disk，选择memory会增加内存开销，但会提升性能) 推荐在板子上使用disk
+        "--pch-storage=disk",
+        // 启用这项时，补全函数时，将会给参数提供占位符，键入后按 Tab 可以切换到下一占位符，乃至函数末
+        // 我选择禁用
+        "--function-arg-placeholders=false",
+        // compelie_commands.json 文件的目录位置(相对于工作区，由于 CMake 生成的该文件默认在 build 文件夹中，故设置为 build)
+        "--compile-commands-dir=build"
+    ],
+    // 自动检测 clangd 更新
+    "clangd.checkUpdates": true,
+    // clangd的snippets有很多的跳转点，不用这个就必须手动触发Intellisense了
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+}
